@@ -95,32 +95,8 @@ function initListener() {
 function showMaterialClick(index) {
 	console.log("showMaterialClick index = " + index);
 	currentMaterial = currentMaterialList[index];
-	$("#main").children().hide(); // 隐藏所有
-	$("#show_material").show();
-	// 设置内容
-	$("#show_material_title").text(currentMaterial.title);
-	$("#show_material_subtitle").text(currentMaterial.subtitle);
-	$('#show_material_img').attr('src', currentMaterial.picPath);
-
-	$("#show_material_marketprice").text(currentMaterial.marketValue);
-	$("#show_material_sellingprice").text(currentMaterial.sellingValue);
-	var str_data = {
-		"materialId" : currentMaterial.id,
-	};
-	// 通过ajax传输
-	$.ajax({
-		type : 'post',
-		url : '/decorate/text/find_text',
-		data : str_data,
-		// 处理返回的结果
-		success : function(data) {
-			console.log("showMaterialClick data = " + data);
-			var jsonData = eval("(" + data + ")");
-			if (jsonData.code == 200) {
-				$("#show_material_text").text(jsonData.data.text);
-			}
-		}
-	});
+	setCookie("materialId",currentMaterial.id);
+	window.location.href = "inner.html";
 }
 
 // 刷新Type数据
@@ -247,4 +223,23 @@ function showMaterials(materials) {
 				+ '</div>' + '</li>'
 	}
 	$("#main_material").html(ss);
+}
+
+//写cookies
+function setCookie(name, value) {
+	var exp = new Date();
+	exp.setTime(exp.getTime() + 2 * 60 * 60 * 1000);
+	document.cookie = name + "=" + escape(value) + ";expires="
+			+ exp.toGMTString();
+}
+
+// 读取cookies
+function getCookie(name) {
+	var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+
+	if (arr = document.cookie.match(reg))
+
+		return unescape(arr[2]);
+	else
+		return null;
 }

@@ -42,17 +42,6 @@ function checkName() {
 	}
 }
 
-// 读取cookies
-function getCookie(name) {
-	var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-
-	if (arr = document.cookie.match(reg))
-
-		return unescape(arr[2]);
-	else
-		return null;
-}
-
 // 初始化Type
 function initType() {
 	// 获取数据
@@ -764,4 +753,23 @@ function createTypeView(type) {
 							+ '<img src="img/ic_edit.png" align="right" class="edit_type" />'
 							+ '<ul class="series clearfix">' + series + '</ul>'
 							+ '</li>')
+}
+
+//写cookies
+function setCookie(name, value) {
+	var exp = new Date();
+	exp.setTime(exp.getTime() + 2 * 60 * 60 * 1000);
+	document.cookie = name + "=" + escape(value) + ";expires="
+			+ exp.toGMTString();
+}
+
+// 读取cookies
+function getCookie(name) {
+	var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+
+	if (arr = document.cookie.match(reg))
+
+		return unescape(arr[2]);
+	else
+		return null;
 }

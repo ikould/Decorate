@@ -3,6 +3,7 @@ var currentType; // 当前Type
 var currentSeries; // 当前Series
 var currentMaterialList; // 当前Material列表
 var currentMaterial; // 当前Material
+var currentAuthority; // 当前所有权限信息
 
 window.onload = function() {
 	console.log("window.onload");
@@ -57,6 +58,11 @@ function initTypeListener() {
 	$(".add_type").click(function() {
 		$("#main").children().hide(); // 隐藏所有
 		$("#add_type").show();
+	});
+	// 权限设置界面
+	$(".update_authority").click(function() {
+		$("#main").children().hide(); // 隐藏所有
+		$("#authority").show();
 	});
 	// 添加type内部按钮
 	$("#add_type_btn").click(function() {
@@ -617,7 +623,7 @@ function deleteMaterial() {
 // 刪除Material
 function getMaterialText(materialId) {
 	var str_data = {
-		"materialId" : materialId,
+		"materialId" : materialId
 	};
 	// 通过ajax传输
 	$.ajax({
@@ -720,7 +726,10 @@ function refreshTypeView(types) {
 		for (var i = 0; i < types.length; i++) {
 			createTypeView(types[i]);
 		}
-		$(".slide_type").append('<li><p class = "add_type"> + 添加类型 </p> </li>');
+		$(".slide_type")
+				.append(
+						'<li><p class = "add_type"> + 添加类型 </p> </li>'
+								+ '<li><p class = "update_authority"> + 权限设置 </p> </li>');
 	}
 }
 
@@ -755,7 +764,116 @@ function createTypeView(type) {
 							+ '</li>')
 }
 
-//写cookies
+// 获取权限信息
+function getAuthority() {
+	var str_data = {};
+	// 通过ajax传输
+	$.ajax({
+		type : 'post',
+		url : '/decorate/autohroty/findAll',
+		data : str_data,
+		// 处理返回的结果
+		success : function(data) {
+			console.log(data);
+			var jsonData = eval("(" + data + ")");
+			if (jsonData.code == 200) {
+				console.log(jsonData.data);
+				refreshAuthority(jsonData.data);
+				refreshListener();
+			}
+		}
+	});
+}
+
+// 刷新权限列表
+function refreshAuthority(data) {
+	currentAuthority = data;
+	/**
+	 * <ul class="clearfix">
+	 * <li>序号</li>
+	 * <li>手机厂家</li>
+	 * <li>手机型号</li>
+	 * <li>Mac地址</li>
+	 * <li>操作</li>
+	 * </ul>
+	 */
+	$("#authority").html("");
+	$("#authority").append(
+			' <ul class="clearfix">' + '<li>序号</li>' + '<li>手机厂家</li>'
+					+ '<li>手机型号</li>' + '<li>Mac地址</li>' + '<li>添加时间</li>' +'<li>操作</li>'
+					+ '</ul>');
+	var text  = "";
+	/**
+	 * authorityJson.put("id", authority.getId());
+			authorityJson.put("authority", authority.getAuthority());
+			authorityJson.put("mac", authority.getMac());
+			authorityJson.put("time", authority.getTime());
+			authorityJson.put("productName", authority.getProductName());
+			authorityJson.put("modelName", authority.getModelName());
+	 */
+	for (var i = 0; i < data.length; i++) {
+		var authority = data[i];
+		text+='<ul class="clearfix">';
+		text+='<li>'+(i+1)'</li>';
+		text+='<li>'+authority.productName+'</li>';
+		text+='<li>'+authority.modelName+'</li>';
+		text+='<li>'+authority.mac+'</li>';
+		text+='<li>'+authority.time+'</li>';
+		text+='<li>'+
+			'<button class="phone_limit">禁用</button>'+
+			'<button class="phone_delete">删除</span>'+
+		+'</li>';
+	}
+	$("#authority").append(text);
+}
+
+// 权限监听刷新
+function refreshListener(){
+	// 禁用操作
+	$(".phone_limit").click(function() {
+		var index = getParent("li").index();
+		console.log("禁用操作 序列"+index);
+		limit(currentAuthority[index]);
+		$("#main").children().hide(); // 隐藏所有
+		$("#add_series").show();
+	});
+	// 删除操作
+	$(".phone_delete").click(function() {
+		$("#main").children().hide(); // 隐藏所有
+		$("#add_series").show();
+	});
+}
+
+// 禁用请求
+function limit(data){
+	/**
+	 * 	String mac = request.getParameter("mac");
+		int authorityIndex = Integer.valueOf(request.getParameter("authority"));
+		String productName = request.getParameter("productName");
+		String modelName = request.getParameter("modelName");
+	 */
+	var str_data = {
+		"materialId" : materialId,
+	};
+	// 通过ajax传输
+	$.ajax({
+		type : 'post',
+		url : '/decorate/autohroty/findAll',
+		data : str_data,
+		// 处理返回的结果
+		success : function(data) {
+			console.log(data);
+			var jsonData = eval("(" + data + ")");
+			if (jsonData.code == 200) {
+				console.log(jsonData.data);
+				refreshAuthority(jsonData.data);
+				refreshListener();
+			}
+		}
+	});
+}
+
+// 写cookies
 function setCookie(name, value) {
 	var exp = new Date();
 	exp.setTime(exp.getTime() + 2 * 60 * 60 * 1000);

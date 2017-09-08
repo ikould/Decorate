@@ -16,7 +16,7 @@ function init() {
 
 // 初始化左侧Slide
 function initSlide() {
-	$("#slide").height(window.innerHeight);
+	$("#slide").height(screen.height);
 }
 
 var isOut = false;

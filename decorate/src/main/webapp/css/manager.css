@@ -51,6 +51,10 @@ body {
 	background: #7f5a00 !important;
 }
 
+.update_authority {
+	background: #ad3d06 !important;
+}
+
 .add_series {
 	background: #9b7b2e !important;
 }
@@ -396,8 +400,8 @@ body {
 	color: #f8a900;
 }
 
-.show_text{
-	padding:20px;	
+.show_text {
+	padding: 20px;
 }
 
 #show_material_text {
@@ -413,4 +417,21 @@ body {
 	color: #000;
 	line-height: 30px;
 	font-size: 14px;
+}
+
+/* 权限管理 */
+#authority ul li {
+	width: 20%;
+	text-align: center;
+	padding: 0 15px;
+	line-height: 60px;
+	height: 60px;
+	border: 1px #eee solid;
+	float: left;
+}
+
+#authority ul li button {
+	padding: 0 10px;
+	cursor: pointer;
+	margin: 0 7px;
 }

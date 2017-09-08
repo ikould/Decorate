@@ -23,13 +23,7 @@ public class RetrofitHelper {
     /**
      * URL基础地址
      */
-    public static final String BASE_URL      = "http://open.adnonstop.com/art_camera/biz/prod/";
-    /**
-     * URL基础地址
-     */
-    public static final String TEST_BASE_URL = "http://tw.adnonstop.com/beauty/app/api/art_camera/biz/beta/";
-
-    public static final String IOS_BASE_TEST = "https://tw-ios.adnonstop.com/beauty/app/api/art_camera/biz/beta/";
+    public static final String BASE_URL = "http://www.ikould.com/decorate/";
 
     private static RetrofitHelper instance;
     private        Retrofit       retrofit;
@@ -44,7 +38,7 @@ public class RetrofitHelper {
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .build();
         retrofit = new Retrofit.Builder()
-                .baseUrl(IOS_BASE_TEST)
+                .baseUrl(BASE_URL)
                 .client(client)
                 .addConverterFactory(new ToStringConverterFactory())
                 .addConverterFactory(GsonConverterFactory.create())

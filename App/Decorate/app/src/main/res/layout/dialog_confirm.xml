@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <!-- 背景 -->
+    <ImageView
+        android:id="@+id/iv_blur_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"/>
+
+    <!-- 背景 -->
+    <View
+        android:id="@+id/view_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#55000000"/>
+
+    <LinearLayout
+        android:id="@+id/ll_dialog_main"
+        android:layout_width="@dimen/xx_810"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/shape_dialog_bg"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/xx_72">
+
+        <!-- 标题 -->
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="标题"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/xx_54"
+            android:textStyle="bold"/>
+
+        <!-- 文本信息 -->
+        <TextView
+            android:id="@+id/tv_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/xx_35"
+            android:gravity="center"
+            android:lineSpacingExtra="@dimen/xx_26"
+            android:paddingLeft="@dimen/xx_115"
+            android:paddingRight="@dimen/xx_115"
+            android:text="测试啊测试啊测试啊测试啊测试试啊测试啊测试啊"
+            android:textColor="@color/dark"
+            android:textSize="@dimen/xx_42"/>
+
+        <!-- 分割线 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/xx_1"
+            android:layout_marginTop="@dimen/xx_72"
+            android:background="@color/black"/>
+
+        <!-- 确定按钮 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_btn1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/xx_132"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="取消"
+                android:textColor="@color/black"
+                android:textSize="@dimen/xx_53"/>
+
+            <View
+                android:id="@+id/line1"
+                android:layout_width="@dimen/xx_1"
+                android:layout_height="match_parent"
+                android:background="@color/black"/>
+
+            <TextView
+                android:id="@+id/tv_btn2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/xx_132"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="确定"
+                android:textColor="@color/black"
+                android:textSize="@dimen/xx_53"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -17,7 +17,7 @@ public class PrintToClient {
 	 * @throws IOException
 	 */
 	public static void printMsgToClient(HttpServletResponse response,
-			JSONObject json) throws IOException {
+			Object json) throws IOException {
 		JSONObject jsonFrame = new JSONObject();
 		jsonFrame.put("code", 200);
 		jsonFrame.put("data", json);

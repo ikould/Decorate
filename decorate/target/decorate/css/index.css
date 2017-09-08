@@ -16,7 +16,7 @@ body {
 	margin-bottom: 10px;
 }
 
-#type_list {
+#main_Top>img {
 	position: absolute;
 	width: 30px;
 	height: 30px;
@@ -29,6 +29,8 @@ body {
 	font-weight: bold;
 	padding: 10px;
 	text-align: center;
+	padding-bottom:15px;
+	border-bottom: 1px #ddd solid;
 }
 
 #subtitle {
@@ -41,7 +43,6 @@ body {
 #main_material {
 	width: 100%;
 	padding-top: 15px;
-	border-top: 1px #ddd solid;
 }
 
 #main_material li {
@@ -172,4 +173,94 @@ body {
 
 .slide_series_choose {
 	background: #ffb413 !important;
+}
+
+/* 详情页面 */
+#show_material {
+	width: 100%;
+	background: #ddd;
+	margin-right: 30px;
+	padding: 0 !important;
+	min-height: 850px;
+	padding: 0 !important;
+}
+
+#show_material div {
+	margin: 0 !important;
+}
+
+#show_material_title {
+	width: 100%;
+	background: #aaa;
+	padding: 30px;
+	color: #000;
+	font-size: 45px;
+	font-weight: bold;
+	text-align: center;
+}
+
+#show_material_subtitle {
+	width: 100%;
+	padding: 5px;
+	color: #999;
+	font-size: 15px;
+	text-align: center;
+}
+
+.show_img {
+	width: 100%;
+	padding: 30px 0;
+	text-align: center;
+}
+
+.show_material_price {
+	width: 100%;
+	padding: 5px;
+	text-align: center;
+}
+
+.show_material_price p {
+	width: 50%;
+	float: left;
+}
+
+.show_material_price p:first-child {
+	text-align: right;
+	padding-right: 20px;
+}
+
+.show_material_price p:last-child {
+	text-align: left;
+	padding-left: 20px;
+}
+
+.show_material_price p label {
+	font-size: 14px;
+	color: #000;
+}
+
+.show_material_price p span {
+	font-size: 15px;
+	font-weight: bold;
+	margin-left: 10px;
+	color: #f8a900;
+}
+
+.show_text {
+	padding: 20px;
+}
+
+#show_material_text {
+	padding: 20px;
+	min-height: 500px;
+	font-size: 14px;
+	background: #f5f5f5;
+	border-radius: 5px;
+	box-sizing: border-box;
+	line-height: 30px;
+	color: #000;
+	text-align: left;
+	color: #000;
+	line-height: 30px;
+	font-size: 14px;
 }
